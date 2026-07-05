@@ -1,0 +1,122 @@
+[
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d24",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "Pressure_bar",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d23",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "Temperature_C",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d26",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "FlowRate_L_min",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d25",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "Level_pct",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d27",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Boolean",
+    "historyProvider": "CoreHistorian",
+    "name": "HeaterOn",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "scope": "A",
+  "description": "Connection to Confluent Kafka",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "admin",
+      "timestamp": "2026-07-05T14:11:43Z"
+    },
+    "uuid": "46d19d2a-b515-4ce7-9072-8d72e023edce",
+    "lastModificationSignature": "a8876278d9ae7fc7c8818b744953c7efd669bf5c10c3c49d1bc7f869ea7a6827",
+    "enabled": true
+  }
+}

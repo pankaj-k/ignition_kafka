@@ -1,0 +1,122 @@
+[
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d39",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "Voltage_V",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d36",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "ActivePower_kW",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d40",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "Current_A",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d37",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "EnergyTotal_kWh",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d38",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "PowerFactor",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  }
+]

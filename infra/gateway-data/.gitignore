@@ -1,0 +1,41 @@
+# Database files
+**/db/
+**/metricsdb/
+**/autobackup/
+**/db_backup_sqlite.idb
+**/valueStore.idb
+
+# Cache and temporary files
+**/jar-cache/
+**/request
+**/response
+*.tmp
+*.bak
+**/var
+
+# Log files
+*.log
+**/logs
+
+# Certificates and security
+**/certificates/
+**/keystore/
+
+# Runtime configuration (environment-specific)
+**/config/local
+**/config/resources/local
+
+# Gateway-specific runtime files
+**/.container-init.conf
+
+# Backup and converted files
+**/conversion-report.txt
+**.digest.json
+
+# Project conversion artifacts
+**/projects/conversion-report.txt
+**/migration-log-*.md
+**/.resources/
+
+# Alarm history files
+**/.alarms_*

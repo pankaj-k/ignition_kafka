@@ -1,0 +1,19 @@
+{
+  "scope": "A",
+  "description": "Factory Simulator OPC UA Connection",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "dmfg",
+      "timestamp": "2026-07-05T13:29:57Z"
+    },
+    "uuid": "92ad39d8-f573-4542-a449-25a607642af5",
+    "lastModificationSignature": "d9d738867cbd72a29ead6ccd0de8760fc580481a0b249597400a8e1144eeafd5",
+    "enabled": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "calculator.png"
+  ],
+  "attributes": {
+    "width": 48,
+    "format": "PNG",
+    "lastModification": {
+      "actor": "import",
+      "timestamp": "2026-06-22T00:39:01Z"
+    },
+    "size": 521,
+    "lastModificationSignature": "7f445d19f127673f38186ecbb5faecfb20eb112e1db68e61c56fd68cf785e18c",
+    "height": 48
+  }
+}

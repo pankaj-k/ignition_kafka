@@ -1,0 +1,25 @@
+{
+  "profile": {
+    "type": "kafka"
+  },
+  "settings": {
+    "bootstrapServers": [
+      "YOUR_BOOTSTRAP_SERVER.confluent.cloud:9092"
+    ],
+    "password": {
+      "type": "Embedded"
+    },
+    "props": {
+      "client": "",
+      "consumer": ""
+    },
+    "saslMechanism": "PLAIN",
+    "securityProtocol": "SASL_SSL",
+    "ssl": {
+      "keystore": {},
+      "protocol": "TLSv1.3",
+      "truststore": {}
+    },
+    "username": "YOUR_CONFLUENT_API_KEY"
+  }
+}

@@ -1,0 +1,96 @@
+[
+  {
+    "name": "AssemblyMachine",
+    "typeId": null,
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "opc",
+        "dataType": "Boolean",
+        "alarms": [
+          {
+            "mode": "BadQuality",
+            "name": "QualityBad",
+            "priority": "High"
+          },
+          {
+            "name": "MachineFault",
+            "priority": "High",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "true"
+            }
+          }
+        ],
+        "name": "Alarm",
+        "historyEnabled": true,
+        "includeMetadata": true,
+        "tagType": "AtomicTag",
+        "opcServer": "FactorySimulator"
+      },
+      {
+        "valueSource": "opc",
+        "dataType": "Float4",
+        "alarms": [
+          {
+            "mode": "BadQuality",
+            "name": "QualityBad",
+            "priority": "High"
+          }
+        ],
+        "name": "CycleTime_sec",
+        "historyEnabled": true,
+        "includeMetadata": true,
+        "tagType": "AtomicTag",
+        "opcServer": "FactorySimulator"
+      },
+      {
+        "valueSource": "opc",
+        "alarms": [
+          {
+            "mode": "BadQuality",
+            "name": "QualityBad",
+            "priority": "High"
+          }
+        ],
+        "name": "PartCount ",
+        "historyEnabled": true,
+        "includeMetadata": true,
+        "tagType": "AtomicTag",
+        "opcServer": "FactorySimulator"
+      },
+      {
+        "valueSource": "opc",
+        "dataType": "String",
+        "alarms": [
+          {
+            "mode": "BadQuality",
+            "name": "QualityBad",
+            "priority": "High"
+          }
+        ],
+        "name": "State",
+        "historyEnabled": true,
+        "includeMetadata": true,
+        "tagType": "AtomicTag",
+        "opcServer": "FactorySimulator"
+      },
+      {
+        "valueSource": "opc",
+        "dataType": "Float4",
+        "alarms": [
+          {
+            "mode": "BadQuality",
+            "name": "QualityBad",
+            "priority": "High"
+          }
+        ],
+        "name": "ToolWear_pct",
+        "historyEnabled": true,
+        "includeMetadata": true,
+        "tagType": "AtomicTag",
+        "opcServer": "FactorySimulator"
+      }
+    ]
+  }
+]

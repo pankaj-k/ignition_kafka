@@ -1,0 +1,80 @@
+{
+  "enabled": true,
+  "source": {
+    "type": "ignition.tagEvent",
+    "config": {
+      "paths": [
+        "[default]Factory/Energy/**"
+      ],
+      "changeTypes": [
+        "VALUE"
+      ],
+      "skipInitialValues": false
+    }
+  },
+  "sourceEncoder": {
+    "type": "ignition.jsonObject",
+    "properties": {
+      "encoding": "UTF-8"
+    }
+  },
+  "handlers": [
+    {
+      "enabled": true,
+      "type": "com.inductiveautomation.connectors.kafka.eventstream.handler",
+      "config": {
+        "connector": "confluent-kafka",
+        "topic": {
+          "data": "\u0027factory.energy\u0027",
+          "type": "EXPRESSION"
+        },
+        "key": {
+          "data": "{event.metadata.tagPath}",
+          "type": "EXPRESSION"
+        },
+        "value": {
+          "data": "{event.data}",
+          "type": "EXPRESSION"
+        },
+        "partition": {
+          "data": "",
+          "type": "STATIC"
+        },
+        "timestamp": {
+          "data": "",
+          "type": "STATIC"
+        },
+        "headers": [],
+        "properties": []
+      },
+      "failureStrategy": {
+        "type": "ABORT",
+        "retryPolicy": null
+      }
+    }
+  ],
+  "batch": {
+    "debounceMs": 100,
+    "maxWaitMs": 1000,
+    "maxQueueSize": 0,
+    "overflow": "DROP_OLDEST"
+  },
+  "filter": {
+    "enabled": false,
+    "userCode": "\treturn True"
+  },
+  "transform": {
+    "enabled": true,
+    "userCode": "\tparts \u003d event.metadata.tagPath.split(\"/\")\n\t\n\tif len(parts) \u003c 4:\n\t\treturn None\n\t\t\n\tenriched \u003d dict(event.data)   # copy existing fields\n\tenriched[\"area\"]       \u003d parts[1]\n\tenriched[\"machine_id\"] \u003d parts[2]\n\tenriched[\"tag\"]        \u003d parts[3]\n\t\n\treturn system.util.jsonEncode(enriched)"
+  },
+  "transformEncoder": {
+    "type": "ignition.jsonObject",
+    "properties": {
+      "encoding": "UTF-8"
+    }
+  },
+  "onError": {
+    "enabled": true,
+    "userCode": "\tlogger \u003d system.util.getLogger(\"factory.stream\")\n\tlogger.error(\"Error count: \" + str(len(event)))\n\tfor item in event:\n\t    logger.error(\"Error item: \" + str(item))"
+  }
+}

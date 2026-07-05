@@ -1,0 +1,146 @@
+[
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d59",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Int8",
+    "historyProvider": "CoreHistorian",
+    "name": "RejectCount",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d55",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Boolean",
+    "historyProvider": "CoreHistorian",
+    "name": "Running",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d60",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "OEE_pct",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d57",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Int8",
+    "historyProvider": "CoreHistorian",
+    "name": "Throughput_units_hr",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d58",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Int8",
+    "historyProvider": "CoreHistorian",
+    "name": "TotalProduced",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  },
+  {
+    "valueSource": "opc",
+    "historyMaxAge": 0,
+    "opcItemPath": "nsu\u003durn:factory:simulator;i\u003d56",
+    "historyMetadataEnabled": true,
+    "alarms": [
+      {
+        "mode": "BadQuality",
+        "activePipeline": "FactorySimulator_OPC_UA/factory-quality-pipeline",
+        "name": "QualityBad",
+        "priority": "High"
+      }
+    ],
+    "historySampleRateUnits": "SEC",
+    "historyTagGroup": "Default",
+    "tagType": "AtomicTag",
+    "dataType": "Float8",
+    "historyProvider": "CoreHistorian",
+    "name": "ConveyorSpeed_m_min",
+    "historyEnabled": true,
+    "includeMetadata": true,
+    "historySampleRate": 2,
+    "opcServer": "FactorySimulator"
+  }
+]

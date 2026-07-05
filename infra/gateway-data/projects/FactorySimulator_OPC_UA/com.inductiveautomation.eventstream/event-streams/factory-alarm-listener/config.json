@@ -1,0 +1,72 @@
+{
+  "enabled": true,
+  "source": {
+    "type": "ignition.gatewayEvent",
+    "config": null
+  },
+  "sourceEncoder": {
+    "type": "ignition.jsonObject",
+    "properties": {
+      "encoding": "UTF-8"
+    }
+  },
+  "handlers": [
+    {
+      "enabled": true,
+      "type": "com.inductiveautomation.connectors.kafka.eventstream.handler",
+      "config": {
+        "connector": "confluent-kafka",
+        "topic": {
+          "data": "\u0027factory.quality\u0027",
+          "type": "EXPRESSION"
+        },
+        "key": {
+          "data": "",
+          "type": "EXPRESSION"
+        },
+        "value": {
+          "data": "{event.data}",
+          "type": "EXPRESSION"
+        },
+        "partition": {
+          "data": "",
+          "type": "STATIC"
+        },
+        "timestamp": {
+          "data": "",
+          "type": "STATIC"
+        },
+        "headers": [],
+        "properties": []
+      },
+      "failureStrategy": {
+        "type": "ABORT",
+        "retryPolicy": null
+      }
+    }
+  ],
+  "batch": {
+    "debounceMs": 100,
+    "maxWaitMs": 1000,
+    "maxQueueSize": 0,
+    "overflow": "DROP_OLDEST"
+  },
+  "filter": {
+    "enabled": false,
+    "userCode": "\treturn True"
+  },
+  "transform": {
+    "enabled": true,
+    "userCode": "\tdata \u003d dict(event.data)\n\traw_source \u003d str(data.get(\"source\", \"\"))\n\ttag_path \u003d raw_source.split(\"/tag:\")[1].split(\":/alm:\")[0] if \"/tag:\" in raw_source else raw_source\n\talarm    \u003d raw_source.split(\":/alm:\")[1] if \":/alm:\" in raw_source else \"\"\n\tparts    \u003d tag_path.split(\"/\")\n\t\n\treturn {\n\t    \"metadata\": {\"tagPath\": tag_path},\n\t    \"data\": {\n\t        \"tag_path\":   tag_path,\n\t        \"area\":       parts[1] if len(parts) \u003e 1 else \"\",\n\t        \"device\":     parts[2] if len(parts) \u003e 2 else \"\",\n\t        \"tag\":        parts[3] if len(parts) \u003e 3 else \"\",\n\t        \"alarm\":      alarm,\n\t        \"state\":      str(data.get(\"eventTypeReadable\", \"\")),\n\t        \"priority\":   str(data.get(\"priorityReadable\", \"\")),\n\t        \"event_time\": str(data.get(\"eventTime\", \"\")),\n\t        \"event_id\":   str(data.get(\"eventId\", \"\"))\n\t    }\n\t}"
+  },
+  "transformEncoder": {
+    "type": "ignition.jsonObject",
+    "properties": {
+      "encoding": "UTF-8"
+    }
+  },
+  "onError": {
+    "enabled": true,
+    "userCode": "\n    logger \u003d system.util.getLogger(\"alarm-error\")\n    logger.error(\"Error count: \" + str(len(event)))\n    for item in event:\n        logger.error(\"Error item: \" + str(item))\n\n"
+  }
+}

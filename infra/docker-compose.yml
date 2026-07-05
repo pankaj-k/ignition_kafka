@@ -6,27 +6,43 @@ services:
       context: .
     pull_policy: build
     ports:
-      - "8088:8088"    # Gateway web UI
+      - "8088:8088"    # Gateway web UI  → http://localhost:8088
       - "8043:8043"    # Gateway web UI (HTTPS)
     volumes:
-      - ignition-data:/usr/local/bin/ignition/data
+      # BIND MOUNT — this is the key to how version control works.
+      #
+      # ./gateway-data on your host machine IS Ignition's data directory
+      # inside the container. They are the same physical files.
+      #
+      # When you save anything in the Ignition UI (a connection, an Event
+      # Stream, a tag), Ignition writes a JSON file into this directory.
+      # That file is immediately visible on your host — run 'git status'
+      # and you will see the change. Commit it like any other code change.
+      #
+      # On Linux hosts only: Ignition runs as uid 999 inside the container.
+      # Run once after cloning: sudo chown -R 999:999 gateway-data/
+      - ./gateway-data:/usr/local/bin/ignition/data
     environment:
       - ACCEPT_IGNITION_EULA=Y
       - GATEWAY_ADMIN_USERNAME=admin
       - GATEWAY_ADMIN_PASSWORD=Ignition@123
       - IGNITION_EDITION=standard
+    extra_hosts:
+      # Makes 'host.docker.internal' resolve to the host machine on Linux.
+      # On Windows/macOS Docker Desktop this is automatic — not needed but harmless.
+      - "host.docker.internal:host-gateway"
     command: >
       -n ignition-kafka-demo
-      -m 1024
+      -m 1024                  # heap size in MB — increase if you see OOM errors
     restart: unless-stopped
 
-volumes:
-  ignition-data:
-
-# Usage:
-#   1. docker-compose build
+# FIRST-TIME SETUP (after cloning):
+#   1. Edit gateway-data/config/resources/core/ignition/service-connector/
+#      ignition_confluent_kafka/config.json — fill in your bootstrap server and API key
 #   2. docker-compose up -d
-#   3. Open http://localhost:8088 (admin/Ignition@123)
-#   4. Connect your OPC UA source (Config -> OPC UA -> Connections)
-#   5. Configure Confluent Cloud credentials in the Kafka Connector module
-#   6. Set up an Event Stream with your tag path -> Kafka topic
+#   3. Open http://localhost:8088  (admin / Ignition@123)
+#   4. Go to Connections → Service Connectors → ignition_confluent_kafka → Edit
+#      Enter your Confluent API Secret in the Password field and save
+#
+# NOTE: Ignition starts in 2-hour trial mode. Get a free developer licence at
+#       https://inductiveautomation.com if you need it to run permanently.

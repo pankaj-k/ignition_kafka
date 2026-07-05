@@ -1,0 +1,18 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [],
+  "attributes": {
+    "lastModification": {
+      "actor": "8.3-migration",
+      "timestamp": "2026-06-22T00:38:07Z"
+    },
+    "ignorePunctuation": false,
+    "caseInsensitive": false,
+    "lastModificationSignature": "a071797efc2e30de0f2a14180d14686a5635e5ab30cfd47a9a2502ea02252d71",
+    "ignoreWhitespace": false,
+    "ignoreTags": false
+  }
+}
