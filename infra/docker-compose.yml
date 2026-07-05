@@ -1,0 +1,32 @@
+name: ignition_kafka
+
+services:
+  gateway:
+    build:
+      context: .
+    pull_policy: build
+    ports:
+      - "8088:8088"    # Gateway web UI
+      - "8043:8043"    # Gateway web UI (HTTPS)
+    volumes:
+      - ignition-data:/usr/local/bin/ignition/data
+    environment:
+      - ACCEPT_IGNITION_EULA=Y
+      - GATEWAY_ADMIN_USERNAME=admin
+      - GATEWAY_ADMIN_PASSWORD=Ignition@123
+      - IGNITION_EDITION=standard
+    command: >
+      -n ignition-kafka-demo
+      -m 1024
+    restart: unless-stopped
+
+volumes:
+  ignition-data:
+
+# Usage:
+#   1. docker-compose build
+#   2. docker-compose up -d
+#   3. Open http://localhost:8088 (admin/Ignition@123)
+#   4. Connect your OPC UA source (Config -> OPC UA -> Connections)
+#   5. Configure Confluent Cloud credentials in the Kafka Connector module
+#   6. Set up an Event Stream with your tag path -> Kafka topic
