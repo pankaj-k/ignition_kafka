@@ -138,7 +138,7 @@ Create it fresh via the UI instead:
 
 1. Start Ignition: `docker-compose up -d`
 2. Go to **Connections → Service Connectors → Connections → Create Connection → Kafka**
-3. Name it `ignition_confluent_kafka` (the Event Streams reference this name)
+3. Name it `confluent-kafka` — the Event Streams config files reference this exact name
 
 ### Exact field values
 

@@ -87,7 +87,7 @@ Config lives in `simulator/config/factory.yaml`. OPC UA endpoint defaults to `op
 | Admin username | admin |
 | Admin password | Ignition@123 |
 | OPC UA endpoint (from Docker) | `opc.tcp://host.docker.internal:4840/factory/` |
-| Kafka connection name | `ignition_confluent_kafka` |
+| Kafka connection name | `confluent-kafka` ← must match exactly, Event Streams reference this |
 | Project name | `FactorySimulator_OPC_UA` |
 
 ## Event Streams

@@ -78,7 +78,19 @@ python -m simulator.main
 |------|-------------|
 | `--test` | Fault injection — tags randomly go Bad and recover, for testing alarm pipelines |
 
-### 2. Start Ignition
+### 2. Create Confluent Cloud topics
+
+In the Confluent Cloud UI, create these five topics (default settings are fine):
+
+| Topic | Content |
+|-------|---------|
+| `factory.assembly` | Assembly machine tag changes |
+| `factory.energy` | Energy meter tag changes |
+| `factory.process` | Process tank tag changes |
+| `factory.packaging` | Packaging line tag changes |
+| `factory.quality` | Alarm events |
+
+### 3. Start Ignition
 
 ```bash
 cd infra
@@ -89,7 +101,7 @@ Ignition starts at http://localhost:8088 (admin / Ignition@123).
 
 > **Trial mode:** Ignition runs in trial mode and resets every 2 hours. For a permanent setup, obtain a free developer license from [Inductive Automation](https://inductiveautomation.com).
 
-### 3. Create the Kafka connection
+### 4. Create the Kafka connection
 
 In the Ignition Gateway UI: **Connections → Service Connectors → Connections → Create Connection → Kafka**
 
@@ -99,7 +111,7 @@ Fill in the fields exactly as follows:
 
 | Field | Value |
 |-------|-------|
-| Name | `ignition_confluent_kafka` |
+| Name | `confluent-kafka` ← must match exactly, Event Streams reference this name |
 | Bootstrap Servers | your bootstrap server, e.g. `pkc-xxxxx.region.provider.confluent.cloud:9092` |
 | SASL Mechanism | `PLAIN` ← change from default `GSSAPI` |
 | Security Protocol | `SASL_SSL` ← change from default `SASL_PLAINTEXT` |
@@ -117,6 +129,17 @@ Fill in the fields exactly as follows:
 Save. The connection status should change to Connected within a few seconds.
 
 The OPC UA connection to the simulator and all Event Streams are pre-configured — no further UI steps needed.
+
+### 5. Start the simulator
+
+```bash
+cd simulator
+source .venv/bin/activate     # macOS / Linux
+.venv\Scripts\activate        # Windows
+python -m simulator.main opcua
+```
+
+The OPC UA connection in Ignition goes green. Tag changes flow through the Event Streams into Confluent Cloud within seconds.
 
 ---
 
