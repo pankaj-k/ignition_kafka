@@ -41,6 +41,10 @@ Event Streams and Kafka Connector are bundled in `inductiveautomation/ignition:l
 - **SQLite only (gitignored):** runtime tag values, session state, alarm history
 - **gitignored entirely:** `db/`, `jar-cache/`, `var/`, `certificates/`, `config/local/`
 
+### Committing after Kafka connection changes
+
+After creating or editing the Kafka connection via the UI, Ignition writes `service-connector/ignition_confluent_kafka/config.json`. Before pushing to a public repo, always redact `bootstrapServers` and `username`. The encrypted `password.data` block is safe to commit — it is JWE-encrypted with the instance's private key and is useless on any other Ignition instance.
+
 ### Kafka credentials — not stored in repo
 The `service-connector` config.json is committed with placeholder values (`YOUR_BOOTSTRAP_SERVER`, `YOUR_CONFLUENT_API_KEY`). The password cannot be stored in plain text. Users fill in bootstrap server and API key in the JSON file before first start, then enter the API Secret via the Ignition UI once.
 

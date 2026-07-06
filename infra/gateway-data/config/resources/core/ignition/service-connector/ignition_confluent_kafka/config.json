@@ -1,0 +1,32 @@
+{
+  "profile": {
+    "type": "kafka"
+  },
+  "settings": {
+    "bootstrapServers": [
+      "add_your_own_url"
+    ],
+    "password": {
+      "data": {
+        "ciphertext": "pV3UwNCKKVOn8xH_qvTA1CB6z8D0Oq28T4BKMfPgzYVHvdlHbo9b6_-DPJGH7xtTulovqp",
+        "encrypted_key": "MLNMJp53KRCuWF8KcqmtI_Q",
+        "iv": "p5-BuhuSkYkcpRud",
+        "protected": "eyJhbGciOiJBMjU2S1ciLCJlzAxNTQzLCJ6aXAiOiJERUYifQ",
+        "tag": "Y_AzA5vx5Dw_xT"
+      },
+      "type": "Embedded"
+    },
+    "props": {
+      "client": "",
+      "consumer": ""
+    },
+    "saslMechanism": "PLAIN",
+    "securityProtocol": "SASL_SSL",
+    "ssl": {
+      "keystore": {},
+      "protocol": "TLSv1.3",
+      "truststore": {}
+    },
+    "username": "add_your_own_user_name"
+  }
+}

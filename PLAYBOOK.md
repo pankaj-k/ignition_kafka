@@ -157,6 +157,18 @@ Create it fresh via the UI instead:
 
 Confluent Cloud uses publicly trusted certificates — no custom keystore or truststore needed.
 
+### Committing the connection after setup
+
+After saving the connection in the UI, Ignition writes the config to `gateway-data/config/resources/core/ignition/service-connector/ignition_confluent_kafka/config.json`. Before pushing to a public repo, redact two fields:
+
+| Field | Action |
+|-------|--------|
+| `bootstrapServers` | Replace with `YOUR_BOOTSTRAP_SERVER.confluent.cloud:9092` |
+| `username` | Replace with `YOUR_CONFLUENT_API_KEY` |
+| `password.data` (the ciphertext block) | Safe to leave — JWE-encrypted with this instance's key, useless on any other instance |
+
+This redaction must be repeated any time the connection is edited and recommitted.
+
 ### Known gotchas
 
 **SASL_PLAINTEXT vs SASL_SSL:** The Ignition UI defaults `Security Protocol` to `SASL_PLAINTEXT`. Confluent Cloud requires `SASL_SSL`. The connection will show "Errored" with no visible reason in the UI. Check **Config → System → Logs** and filter for `kafka` to see the real error.
