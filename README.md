@@ -19,6 +19,7 @@ Factory Simulator (OPC UA) → Ignition Gateway → Kafka (Confluent Cloud)
 ```
 ignition_kafka/
 ├── simulator/        ← Python OPC UA server (the factory data source)
+├── terraform/        ← creates Confluent Cloud topics (run once before starting Ignition)
 └── infra/            ← Ignition Docker setup
     ├── gateway-data/ ← Ignition gateway config (version-controlled per IA docs)
     │   ├── config/   ← OPC UA connection to simulator (pre-configured)
@@ -37,6 +38,9 @@ ignition_kafka/
 | Docker | [docs.docker.com/get-docker](https://docs.docker.com/get-docker/) |
 | Docker Compose | Included with Docker Desktop on Windows/macOS. On Linux: [docs.docker.com/compose/install](https://docs.docker.com/compose/install/) |
 | A Confluent Cloud account | [confluent.io/get-started](https://www.confluent.io/get-started/) — free tier is sufficient |
+
+If you want to configure Confluent Kafka via Terraform
+| Terraform | [developer.hashicorp.com/terraform/install](https://developer.hashicorp.com/terraform/install) |
 
 ---
 
@@ -80,7 +84,7 @@ python -m simulator.main
 
 ### 2. Create Confluent Cloud topics
 
-In the Confluent Cloud UI, create these five topics (default settings are fine):
+In the Confluent Cloud UI, go to your cluster → **Topics → Add topic**. Create these five topics (default settings are fine for each):
 
 | Topic | Content |
 |-------|---------|
@@ -89,6 +93,8 @@ In the Confluent Cloud UI, create these five topics (default settings are fine):
 | `factory.process` | Process tank tag changes |
 | `factory.packaging` | Packaging line tag changes |
 | `factory.quality` | Alarm events |
+
+> **Prefer infrastructure-as-code?** The `terraform/` directory creates all five topics with `terraform apply`. See `terraform/terraform.tfvars.example` for the required variables.
 
 ### 3. Start Ignition
 

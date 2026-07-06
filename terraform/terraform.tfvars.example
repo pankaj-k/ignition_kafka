@@ -1,0 +1,8 @@
+# Copy this file to terraform.tfvars and fill in your values.
+# terraform.tfvars is gitignored — never commit it.
+
+confluent_cloud_api_key    = "YOUR_CLOUD_API_KEY"
+confluent_cloud_api_secret = "YOUR_CLOUD_API_SECRET"
+confluent_environment_id   = "env-xxxxxx"
+confluent_cluster_id       = "lkc-xxxxxx"
+confluent_bootstrap_server = "pkc-xxxxx.region.provider.confluent.cloud:9092"
