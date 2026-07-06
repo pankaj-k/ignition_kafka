@@ -21,11 +21,22 @@ ignition_kafka/
 ├── simulator/        ← Python OPC UA server (the factory data source)
 └── infra/            ← Ignition Docker setup
     ├── gateway-data/ ← Ignition gateway config (version-controlled per IA docs)
-    │   ├── config/   ← OPC UA connection + Kafka connector (edit credentials here)
+    │   ├── config/   ← OPC UA connection to simulator (pre-configured)
     │   └── projects/ ← Event Streams, alarm pipelines, Perspective skeleton
     ├── Dockerfile
     └── docker-compose.yml
 ```
+
+---
+
+## Prerequisites
+
+| Tool | Install |
+|------|---------|
+| Python 3.9+ | [python.org](https://www.python.org/downloads/) |
+| Docker | [docs.docker.com/get-docker](https://docs.docker.com/get-docker/) |
+| Docker Compose | Included with Docker Desktop on Windows/macOS. On Linux: [docs.docker.com/compose/install](https://docs.docker.com/compose/install/) |
+| A Confluent Cloud account | [confluent.io/get-started](https://www.confluent.io/get-started/) — free tier is sufficient |
 
 ---
 
@@ -67,20 +78,7 @@ python -m simulator.main
 |------|-------------|
 | `--test` | Fault injection — tags randomly go Bad and recover, for testing alarm pipelines |
 
-### 2. Configure your Confluent Cloud credentials
-
-Open `infra/gateway-data/config/resources/core/ignition/service-connector/ignition_confluent_kafka/config.json` and fill in your two values:
-
-```json
-"bootstrapServers": ["YOUR_BOOTSTRAP_SERVER.confluent.cloud:9092"],
-"username": "YOUR_CONFLUENT_API_KEY"
-```
-
-> Both values are found under **Confluent Cloud → Cluster → Clients → New client**.
-
-The OPC UA connection to the simulator and all Event Streams are pre-configured — no other UI steps needed.
-
-### 3. Start Ignition
+### 2. Start Ignition
 
 ```bash
 cd infra
@@ -91,13 +89,34 @@ Ignition starts at http://localhost:8088 (admin / Ignition@123).
 
 > **Trial mode:** Ignition runs in trial mode and resets every 2 hours. For a permanent setup, obtain a free developer license from [Inductive Automation](https://inductiveautomation.com).
 
-### 4. Enter the Kafka API Secret
+### 3. Create the Kafka connection
 
-In the Ignition Gateway UI: **Connections → Service Connectors → Connections → ignition_confluent_kafka → Edit**
+In the Ignition Gateway UI: **Connections → Service Connectors → Connections → Create Connection → Kafka**
 
-Find the **Password** field, select **Embedded**, and enter your Confluent API Secret. Save.
+You will need your bootstrap server, API key, and API secret from **Confluent Cloud → Cluster → Clients → New client**.
 
-The connection status should change from Errored to Connected within a few seconds.
+Fill in the fields exactly as follows:
+
+| Field | Value |
+|-------|-------|
+| Name | `ignition_confluent_kafka` |
+| Bootstrap Servers | your bootstrap server, e.g. `pkc-xxxxx.region.provider.confluent.cloud:9092` |
+| SASL Mechanism | `PLAIN` ← change from default `GSSAPI` |
+| Security Protocol | `SASL_SSL` ← change from default `SASL_PLAINTEXT` |
+| Username | your Confluent API Key |
+| **Password** | select **Embedded** → enter your Confluent API Secret |
+| TLS Protocol | `TLSv1.3` |
+| Key Password | None |
+| Keystore Type | leave blank |
+| Keystore Password | None |
+| Keystore Key | None |
+| Truststore Password | None |
+
+> Confluent Cloud uses the standard JVM trust store — no custom keystore or certificates needed. The `SASL_SSL` + `PLAIN` combination is what Confluent requires for API key authentication.
+
+Save. The connection status should change to Connected within a few seconds.
+
+The OPC UA connection to the simulator and all Event Streams are pre-configured — no further UI steps needed.
 
 ---
 
@@ -203,9 +222,6 @@ The simulator is not running. Start it first with `python -m simulator.main opcu
 
 **Ignition can't reach the simulator**
 Make sure the OPC UA endpoint uses `host.docker.internal:4840`, not `localhost:4840`. Inside Docker, `localhost` refers to the container, not your machine.
-
-**Kafka connection shows "Errored" with no detail**
-Open **Config → System → Logs** and filter for `kafka`. The most common cause: Security Protocol is set to `SASL_PLAINTEXT` instead of `SASL_SSL`. The UI defaults to `SASL_PLAINTEXT`; Confluent Cloud requires `SASL_SSL` on port 9092. Change the field and save.
 
 **Event Stream shows Events Received: 0**
 Check the Source block — editing any part of an Event Stream can silently clear the tag path subscription. Click the Source block, verify the tag path is still set, re-enter it if blank.

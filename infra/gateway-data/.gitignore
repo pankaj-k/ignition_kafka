@@ -27,6 +27,7 @@
 
 # Gateway-specific runtime files
 **/.container-init.conf
+*_clean
 
 # Backup and converted files
 **/conversion-report.txt

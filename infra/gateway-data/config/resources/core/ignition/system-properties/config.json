@@ -22,6 +22,6 @@
   "scheduledBackupsEnabled": false,
   "scriptMessageEncoding": "Protobuf",
   "secondsBeforeFailover": 60,
-  "systemName": "Ignition-harihar",
+  "systemName": "ignition-kafka-demo",
   "useCondensedDialogFont": false
 }
